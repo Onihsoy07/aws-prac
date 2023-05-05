@@ -29,7 +29,8 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersDto findById(Long id) {
-        return UsersMapping.convertToDto(getUsers(id));
+        throw new IllegalArgumentException("에러에레ㅓㅇ러ㅔ");
+//        return UsersMapping.convertToDto(getUsers(id));
     }
 
     private Users getUsers(Long id) {

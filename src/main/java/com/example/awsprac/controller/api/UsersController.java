@@ -42,7 +42,7 @@ public class UsersController {
 //
 //    }
 //
-//    @DeleteMapping("/user/{id}")
+//    @PutMapping("/user/{id}")
 //    public void update(@PathVariable final Long id, String password, String phone_number) {
 //
 //
