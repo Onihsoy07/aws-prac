@@ -4,6 +4,7 @@ import static org.mockito.BDDMockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.awsprac.domain.dto.UsersDto;
+import com.example.awsprac.domain.dto.UsersJoinDto;
 import com.example.awsprac.domain.entity.Users;
 import com.example.awsprac.service.UsersService;
 import java.util.ArrayList;
@@ -19,7 +20,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import com.google.gson.Gson;
 
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -74,14 +77,45 @@ class UsersControllerTest {
         Long id = 22L;
         given(usersService.findById(id)).willReturn(new UsersDto().builder()
             .id(id)
-            .username("hello")
-            .password("121212")
-            .phone_number("010010")
+            .username("hellooo")
+            .password("12121212112")
+            .phone_number("010010000")
             .build());
 
         mockMvc.perform(
             get("/user/" + id))
             .andExpect(status().isOk())
+            .andExpect(jsonPath("$.data.username").exists())
+            .andExpect(jsonPath("$.data.password").exists())
             .andDo(print());
     }
+
+    @Test
+    @DisplayName("[POST] [save] 호출")
+    void save() throws Exception {
+        UsersJoinDto usersJoinDto = new UsersJoinDto("useruser", "13251afeq", "0100213541");
+
+        given(usersService.sava(usersJoinDto)).willReturn(new UsersDto().builder()
+            .id(999L)
+            .username(usersJoinDto.getUsername())
+            .password(usersJoinDto.getPassword())
+            .phone_number(usersJoinDto.getPhone_number())
+            .build());
+
+        Gson gson = new Gson();
+        String content = gson.toJson(usersJoinDto);
+
+        mockMvc.perform(
+            post("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(content))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.data.id").exists())
+            .andExpect(jsonPath("$.data.username").exists())
+            .andExpect(jsonPath("$.data.password").exists())
+            .andExpect(jsonPath("$.data.phone_number").exists())
+            .andDo(print());
+
+    }
+
 }
