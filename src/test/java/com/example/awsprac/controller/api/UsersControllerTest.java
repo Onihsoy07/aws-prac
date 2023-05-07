@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.awsprac.domain.dto.UsersDto;
 import com.example.awsprac.domain.dto.UsersJoinDto;
+import com.example.awsprac.domain.dto.UsersUpdateDto;
 import com.example.awsprac.domain.entity.Users;
 import com.example.awsprac.service.UsersService;
 import java.util.ArrayList;
@@ -118,4 +119,31 @@ class UsersControllerTest {
 
     }
 
+
+    //업데이트 테스트 코드 어떻게 하는지 확인 해야함
+    @Test
+    @DisplayName("[PUT] [update] 호출")
+    void update() throws Exception {
+        UsersUpdateDto usersUpdateDto = new UsersUpdateDto("13251afeq", "0100213541");
+
+        Long id = 1L;
+
+        given(usersService.update(id, usersUpdateDto)).willReturn(new UsersDto().builder()
+            .id(id)
+            .password(usersUpdateDto.getPassword())
+            .phone_number(usersUpdateDto.getPhone_number())
+            .build());
+
+        Gson gson = new Gson();
+        String content = gson.toJson(usersUpdateDto);
+
+        mockMvc.perform(
+                put("/user/"+id)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(content))
+            .andExpect(jsonPath("$.data.id").exists())
+            .andExpect(jsonPath("$.data.password").exists())
+            .andExpect(jsonPath("$.data.phone_number").exists())
+            .andDo(print());
+    }
 }

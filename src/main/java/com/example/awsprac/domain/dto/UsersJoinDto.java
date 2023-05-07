@@ -22,7 +22,7 @@ public class UsersJoinDto {
 
     @NotNull(message = "password 키가 없습니다.")
     @NotNull(message = "password 값이 없습니다.")
-    @Size(min = 6, max = 20, message = "password 길이가 이상합니다.")
+    @Size(min = 6, max = 50, message = "password 길이가 이상합니다.")
     private String password;
 
     private String phone_number;

@@ -2,6 +2,7 @@ package com.example.awsprac.service.impl;
 
 import com.example.awsprac.domain.dto.UsersDto;
 import com.example.awsprac.domain.dto.UsersJoinDto;
+import com.example.awsprac.domain.dto.UsersUpdateDto;
 import com.example.awsprac.domain.entity.Users;
 import com.example.awsprac.domain.mapping.UsersMapping;
 import com.example.awsprac.domain.repository.UsersRepository;
@@ -47,6 +48,16 @@ public class UsersServiceImpl implements UsersService {
             .build();
         Users savaUsers = usersRepository.save(users);
         return UsersMapping.convertToDto(savaUsers);
+    }
+
+    @Override
+    @Transactional
+    public UsersDto update(Long id, UsersUpdateDto usersUpdateDto) {
+        Users users = getUsers(id);
+        users.setPassword(usersUpdateDto.getPassword());
+        users.setPhone_number(usersUpdateDto.getPhone_number());
+        Users updateUsers = usersRepository.save(users);
+        return UsersMapping.convertToDto(updateUsers);
     }
 
     private Users getUsers(Long id) {
