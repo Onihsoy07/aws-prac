@@ -49,16 +49,6 @@ public class UsersController {
         
         LOGGER.info("[POST] [/user] 호출");
 
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorMap = new HashMap<>();
-
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-
-            return new ResponseDto<>(HttpStatus.BAD_REQUEST.value(), errorMap);
-        }
-
         UsersDto usersDto = usersService.sava(usersJoinDto);
         return new ResponseDto<>(HttpStatus.OK.value(), usersDto);
     }
@@ -74,16 +64,6 @@ public class UsersController {
                        @RequestBody @Valid final UsersUpdateDto usersUpdateDto,
                        BindingResult bindingResult) {
         LOGGER.info("[POST] [/user/{}] 호출", id);
-
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorMap = new HashMap<>();
-
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-
-            return new ResponseDto<>(HttpStatus.BAD_REQUEST.value(), errorMap);
-        }
 
         UsersDto usersDto = usersService.update(id, usersUpdateDto);
         return new ResponseDto<>(HttpStatus.OK.value(), usersDto);
