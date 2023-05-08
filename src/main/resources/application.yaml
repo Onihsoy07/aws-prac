@@ -12,5 +12,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
     show-sql: true
-    properties:
-      hibernate.format_sql: true
+
+sentry:
+  dsn: https://132f3e6611724475a0e204d6c737fa24@o4505148815048704.ingest.sentry.io/4505148820357120
+  exception-resolver-order: -2147483647
