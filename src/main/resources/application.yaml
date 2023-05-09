@@ -1,3 +1,12 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/aws_prac
@@ -12,6 +21,11 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
     show-sql: true
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views
+      suffix: .jsp
 
 sentry:
   dsn: https://132f3e6611724475a0e204d6c737fa24@o4505148815048704.ingest.sentry.io/4505148820357120

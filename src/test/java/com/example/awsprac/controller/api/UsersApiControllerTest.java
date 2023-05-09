@@ -1,25 +1,17 @@
 package com.example.awsprac.controller.api;
 
 import static org.mockito.BDDMockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.awsprac.domain.dto.UsersDto;
 import com.example.awsprac.domain.dto.UsersJoinDto;
 import com.example.awsprac.domain.dto.UsersUpdateDto;
-import com.example.awsprac.domain.entity.Users;
 import com.example.awsprac.service.UsersService;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,8 +22,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(UsersController.class)
-class UsersControllerTest {
+@WebMvcTest(UsersApiController.class)
+class UsersApiControllerTest {
 
     @MockBean
     private UsersService usersService;
