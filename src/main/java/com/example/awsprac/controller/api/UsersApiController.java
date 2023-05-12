@@ -64,10 +64,4 @@ public class UsersApiController {
         return new ResponseDto<>(HttpStatus.OK.value(), usersDto);
     }
 
-    @GetMapping({"/",""})
-    public String index() {
-        System.out.println("hello");
-        return "<h1>hello</h1>";
-    }
-
 }

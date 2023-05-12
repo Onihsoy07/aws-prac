@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(schema = "aws_prac", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
+@Table(schema = "awsPrac", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 public class Users extends BaseEntity {
 
     @Id
